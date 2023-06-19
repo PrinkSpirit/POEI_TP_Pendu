@@ -5,12 +5,18 @@
 #include "structure_mot_mystere.h"
 
 int main() {
+   char guess = '0'; // The current guessed character
+   char* censoredWord; // Display of the known characters of the word
+   int life = 9; // How many tries the user has
 
-   // Struct Word = getRandomWord()
-   char guess = '0';
-   char* mysteryWord; //Malloc word size
+   struct MysteryWord mysteryWord;
+   generateMysteryWord();
 
-   int life = 9; // Hardcoded for now
+   // Initialize the censored word with the same length as the mystery word and with only '_' char
+   censoredWord = (char*)malloc(mysteryWord.lengthWords * sizeof(char));
+   for(int i=0; i<mysteryWord.lengthWords;i++) {
+      censoredWord[i] = '_';
+   }
 
    do{
       // We take the user character guess
@@ -19,31 +25,31 @@ int main() {
       
       // We check if this guess is contained in the word
       if(true) { //checkChara(guess)
-         print("%c is correct!\n", guess);
-         print("%s\n",  mysteryWord);
+         printf("%c is correct!\n", guess);
+         printf("%s\n", censoredWord);
       }
       else {
-         print("%c is incorect!\n", guess);
-         print("Only %i lifes remainings.\n", --life);
-         print("%s\n", mysteryWord);
+         printf("%c is incorect!\n", guess);
+         printf("Only %i lifes remainings.\n", --life);
+         printf("%s\n", censoredWord);
       }
 
       // If the word is complettely discovered, user win
       if(true){ //strcmp(mysteryWord, Word.mot) is complete
-         print("You have guessed the word %s.\nVICTORY!", mysteryWord);
+         printf("You have guessed the word %s.\nVICTORY!", censoredWord);
          break;
       }
 
       // If the user is out of lifes, user lose
       if(life <= 0){
-         print("You are out of lifes...\nFAILURE!");
-         print("    ============\n    || //    |\n\n    ||//     |\n    ||/      |\n    ||       O\n    ||      /|\\\n||       |\n    ||      / \\\n    ||\n    ||\n    ||\n==========");
+         printf("You are out of lifes...\nFAILURE!");
+         printf("    ============\n    || //    |\n\n    ||//     |\n    ||/      |\n    ||       O\n    ||      /|\\\n||       |\n    ||      / \\\n    ||\n    ||\n    ||\n==========");
          break;
       }
 
    }while(true);
    
-   print("Thank you for playing");
+   printf("Thank you for playing");
 
    return 0;
 }
