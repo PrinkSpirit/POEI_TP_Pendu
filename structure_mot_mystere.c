@@ -1,7 +1,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <time.h>
-#include <structure_mot_mystere.h>
+#include "structure_mot_mystere.h"
 
 struct MysteryWord * generateMysteryWord(){
         /*
