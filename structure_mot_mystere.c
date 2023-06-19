@@ -23,8 +23,9 @@ struct MysteryWord  generateMysteryWord(){
 		if(ch == '\n' && lineCounter != lineMysteryWord){
 			lineCounter++;
 			charWordCounter = 0;
+			strcpy(motATrouver.word,"");
 		}
-		else  if(lineCounter == lineMysteryWord){
+		else  if(ch == '\n' && lineCounter == lineMysteryWord){
 			return  motATrouver;
 		}
 		ch = fgetc(fptr);
