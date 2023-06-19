@@ -3,6 +3,7 @@
 #include <string.h>
 
 #include "structure_mot_mystere.h"
+#include "checkMotMystere.h"
 
 int main() {
    char guess = '0'; // The current guessed character
@@ -24,7 +25,7 @@ int main() {
       scanf("%s", &guess);
       
       // We check if this guess is contained in the word
-      if(true) { //checkChara(guess)
+      if(checkChara(guess, &mysteryWord, censoredWord)) {
          printf("%c is correct!\n", guess);
          printf("%s\n", censoredWord);
       }
@@ -35,7 +36,7 @@ int main() {
       }
 
       // If the word is complettely discovered, user win
-      if(true){ //strcmp(mysteryWord, Word.mot) is complete
+      if(strcmp(censoredWord, mysteryWord.word)){ //strcmp(mysteryWord, Word.mot) is complete
          printf("You have guessed the word %s.\nVICTORY!", censoredWord);
          break;
       }
