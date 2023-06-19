@@ -18,12 +18,14 @@ struct MysteryWord  generateMysteryWord(){
 	srand(time(NULL)); // Initialization random generator
 	int lineMysteryWord = rand() % maxLineFile; // number of line in file containing words 
 	int charWordCounter = 0;// count char in line
-	int lineCounter = 0; // count nb line when fuènction reads char
+	int lineCounter = 0; // count nb line when function reads char
 	while(ch != EOF){
 		if(ch == '\n' && lineCounter != lineMysteryWord){
 			lineCounter++;
 			charWordCounter = 0;
-			strcpy(motATrouver.word,"");
+			for(int j =0;j<50;j++){
+				motATrouver.word[j]=' ';
+			}
 		}
 		else  if(ch == '\n' && lineCounter == lineMysteryWord){
 			return  motATrouver;
