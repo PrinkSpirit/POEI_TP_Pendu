@@ -6,7 +6,7 @@
 struct MysteryWord{
 	char word[50];
 	int lengthWords;
-}
+};
 
 
 
