@@ -5,7 +5,7 @@
 
 
 
-/*bool checkChara(char c, struct MysteryWord* word, char* censoredWord)
+bool checkChara(char c, struct MysteryWord* word, char* censoredWord)
 {
 	bool isFound = false;
 
@@ -19,4 +19,4 @@
 	}
 
 	return isFound;
-}*/
+}

@@ -5,37 +5,24 @@
 #include "structure_mot_mystere.h"
 #include "checkMotMystere.h"
 
-bool checkChara(char c, struct MysteryWord* word, char* censoredWord)
-{
-	bool isFound = false;
-
-	for (int i = 0; i < word->lengthWords; i++)
-	{
-		if (word->word[i] == c)
-		{
-			isFound = true;
-			censoredWord[i] = word->word[i];
-		}
-	}
-
-	return isFound;
-}
 
 int main() {
    char guess = '0'; // The current guessed character
    char* censoredWord; // Display of the known characters of the word
    int life = 9; // How many tries the user has
 
-   struct MysteryWord mysteryWord;
+   struct MysteryWord mysteryWord = generateMysteryWord();
    //generateMysteryWord();
 
-   mysteryWord.word = "pistache";
-   mysteryWord.lengthWords = strlen("pistache");
+   //mysteryWord.word = "pistache";
+   //mysteryWord.lengthWords = strlen("pistache");
 
    // Initialize the censored word with the same length as the mystery word and with only '_' char
    censoredWord = (char*)malloc(mysteryWord.lengthWords * sizeof(char));
+   char* mystWord = (char*)malloc(mysteryWord.lengthWords * sizeof(char));
    for(int i=0; i<mysteryWord.lengthWords;i++) {
-      censoredWord[i] = '*';
+      censoredWord[i] = '_';
+      mystWord[i] = mysteryWord.word[i];
    }
 
    do{
@@ -56,21 +43,25 @@ int main() {
       }
 
       // If the word is complettely discovered, user win
-      if(0==strcmp(censoredWord, mysteryWord.word)){ //strcmp(mysteryWord, Word.mot) is complete
+      if(0==strcmp(censoredWord, mystWord)){ //strcmp(mysteryWord, Word.mot) is complete
          printf("You have guessed the word %s.\nVICTORY!", censoredWord);
          break;
       }
 
       // If the user is out of lives, user lose
       if(life <= 0){
-         printf("You are out of lives...\nFAILURE!");
+         printf("You are out of lives...\n");
          printf("    ============\n    || //    |\n    ||//     |\n    ||/      |\n    ||       O\n    ||      /|\\\n    ||       |\n    ||      / \\\n    ||\n    ||\n    ||\n==========\n");
+         printf("The word was: %s\n", mystWord);
          break;
       }
 
    }while(true);
    
    printf("Thank you for playing");
+
+   free(censoredWord);
+   free(mystWord);
 
    return 0;
 }
